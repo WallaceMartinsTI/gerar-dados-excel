@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --background-color: #063940;
+  --primary-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+
+header {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+}
+
+header h1 {
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+header h1 span {
+  font-family: 'Kaushan Script', cursive;
+}
+
+main {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+}
+
+main section {
+  border: 2px dashed #195e63;
+  width: 500px;
+  padding: 10px;
+  margin-bottom: 3em;
+  border-radius: 15px;
+}
+
+main section h2 {
+  text-align: center;
+  padding: 10px;
+  text-decoration: underline;
+  font-size: 1.2em;
+}
+
+main section p {
+  border: 2px solid #3e838c;
+  padding: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  border-radius: 15px;
+}
+
+main section p.campo-botao {
+  border: none;
+}
+
+main section p:nth-child(n+2) {
+  margin-top: 10px;
+}
+
+main section p label {
+  display: inline-block;
+  width: 200px;
+  text-align: justify;
+}
+
+main section p input {
+  width: 70px;
+}
+
+input[type="button"] {
+  border: none;
+  width: 150px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+input[type="button"]:hover {
+  opacity: 0.7;
+}
+
+#resultado {
+  text-align: center;
+  margin: 1em 0;
+}
+
+#copiar-container {
+  display: none;
+}

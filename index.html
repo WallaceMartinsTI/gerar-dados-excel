@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerar lista de datas do mês</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body onload="setarAnoAtual()">
+    <header>
+      <h1>Gerar Dados | <span>Patrícia Day Care</span></h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Gerar lista de datas no mês</h2>
+        <p class="campo-input">
+          <label for="numMes">Número do mês:</label>
+          <input type="number" name="numMes" id="numMes" min="1" max="12" />
+        </p>
+        <p class="campo-input">
+          <label for="totalDias">Total de dias do mês:</label>
+          <input
+            type="number"
+            name="totalDias"
+            id="totalDias"
+            min="1"
+            max="31"
+          />
+        </p>
+        <p class="campo-input">
+          <label for="ano">Ano desejado:</label>
+          <input type="number" name="ano" id="ano" min="2000" />
+        </p>
+        <p class="campo-input">
+          <label for="pessoas">Quantidade de pessoas:</label>
+          <input type="number" name="pessoas" id="pessoas" min="0" />
+        </p>
+        <p class="campo-botao">
+          <input type="button" value="Gerar" onclick="gerarMes()" />
+        </p>
+
+        <div id="resultado"></div>
+
+        <p id="copiar-container" class="campo-botao">
+          <input
+            id="copiar"
+            type="button"
+            value="Copiar Datas"
+            onclick="copiarDatas()"
+          />
+        </p>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+    <script></script>
+  </body>
+</html>
