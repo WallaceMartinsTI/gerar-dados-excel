@@ -14,6 +14,12 @@
   font-size: 1em;
 }
 
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   background-color: var(--background-color);
   color: var(--primary-color);
@@ -32,10 +38,15 @@ header h1 span {
   font-family: 'Kaushan Script', cursive;
 }
 
+.content {
+  flex: 1;
+}
+
 main {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
+  gap: 2em;
+  align-items: flex-start;
 }
 
 main section {
@@ -44,6 +55,7 @@ main section {
   padding: 10px;
   margin-bottom: 3em;
   border-radius: 15px;
+  min-height: 380px;
 }
 
 main section h2 {
@@ -79,6 +91,15 @@ main section p input {
   width: 70px;
 }
 
+main section#secao-pessoas label {
+  text-align: left;
+}
+
+main section#secao-pessoas input {
+  width: 150px;
+}
+
+
 input[type="button"] {
   border: none;
   width: 150px;
@@ -94,11 +115,36 @@ input[type="button"]:hover {
   opacity: 0.7;
 }
 
-#resultado {
+#resultado-datas {
   text-align: center;
   margin: 1em 0;
 }
 
-#copiar-container {
+#copiar-container-datas,
+#copiar-container-pessoas {
   display: none;
+}
+
+div#container-pessoas {
+  margin-top: 10px;
+}
+
+footer {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  text-align: center;
+  padding: 10px;
+}
+
+footer span {
+  color: #ece1c3;
+}
+
+footer a {
+  text-decoration: none;
+  color: #8ebdb6;
+}
+
+footer a:hover {
+  color: #195e63;
 }

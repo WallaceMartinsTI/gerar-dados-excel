@@ -2,7 +2,7 @@ let anoDesejado = document.querySelector("#ano");
 let numMes = document.querySelector("#numMes");
 let totalDias = document.querySelector("#totalDias");
 let numCriancas = document.querySelector("#pessoas");
-let resultado = document.querySelector("#resultado");
+let resultadoDatas = document.querySelector("#resultado-datas");
 
 let date = new Date();
 let anoAtual = date.getFullYear();
@@ -50,7 +50,7 @@ function checarErros() {
 }
 
 function gerarMes() {
-  let copiarContainer = document.querySelector("#copiar-container");
+  let copiarContainerDatas = document.querySelector("#copiar-container-datas");
   let inputMes = Number(numMes.value);
   let inputTotalDias = Number(totalDias.value);
   let inputNumCriancas = Number(numCriancas.value);
@@ -64,22 +64,35 @@ function gerarMes() {
 
   let mes = inputMes < 10 ? `0${inputMes}` : inputMes;
 
-  resultado.innerHTML = "";
+  resultadoDatas.innerHTML = "";
   for (let j = 1; j <= inputTotalDias; j++) {
     for (let i = 1; i <= inputNumCriancas; i++) {
       if (j < 10) {
-        resultado.innerHTML += `0${j}/${mes}/${inputAnoDesejado}<br>`;
+        resultadoDatas.innerHTML += `0${j}/${mes}/${inputAnoDesejado}<br>`;
       } else {
-        resultado.innerHTML += `${j}/${mes}/${inputAnoDesejado}<br>`;
+        resultadoDatas.innerHTML += `${j}/${mes}/${inputAnoDesejado}<br>`;
       }
     }
   }
 
-  copiarContainer.style.display = "block";
+  copiarContainerDatas.style.display = "block";
+}
+
+function gerarPessoas() {
+  let quantidadePessoas = document.querySelector("#numPes");
+  let containerPessoas = document.querySelector("#container-pessoas");
+  console.log(containerPessoas);
+  for (let i = 1; i <= Number(quantidadePessoas.value); i++) {
+    let a = document.createElement("div");
+    containerPessoas.innerHTML = +`
+    aaaaaaaaaaaaa
+    a
+    `;
+  }
 }
 
 function copiarDatas() {
-  let texto = resultado.innerHTML;
+  let texto = resultadoDatas.innerHTML;
 
   // Cria um elemento de área de texto temporário
   let areaDeTransferencia = document.createElement("textarea");
