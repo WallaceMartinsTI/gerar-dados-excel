@@ -6,8 +6,13 @@ let resultadoDatas = document.querySelector("#resultado-datas");
 
 let containerPessoas = document.querySelector("#container-pessoas");
 let resultadoPessoas = document.querySelector("#resultado-pessoas");
+let gerarListaPessoas = document.querySelector("#gerar-lista-pessoas");
+let copiarContainerPessoas = document.querySelector(
+  "#copiar-container-pessoas"
+);
 
 let podeGerarPessoas = false;
+let esconderGerarPessoa = false;
 
 let date = new Date();
 let anoAtual = date.getFullYear();
@@ -82,6 +87,10 @@ function gerarMes() {
 
   copiarContainerDatas.style.display = "block";
   podeGerarPessoas = true;
+  esconderGerarPessoa = true;
+  if (esconderGerarPessoa) {
+    toggleDisplay("esconder");
+  }
 }
 
 function gerarPessoas() {
@@ -90,22 +99,10 @@ function gerarPessoas() {
     return;
   }
 
+  toggleDisplay("mostrar");
+  containerPessoas.style.display = "block";
+
   let quantidadePessoas = document.querySelector("#pessoas").value;
-
-  let gerarListaPessoas = document.querySelector("#gerar-lista-pessoas");
-
-  // Checar erros
-  if (Number(quantidadePessoas) < 1 || Number(quantidadePessoas) > 10) {
-    alert(
-      `
-        [ERRO] Dados inválidos, favor checar e tentar novamente!
-        Provavelmente a quantidade de pessoas está inválida!
-        Dado aceito de 1 até 10
-      `
-    );
-    alert("[ERRO] Erros encontrados, corriga-os e tente Gerar novamente!");
-    return;
-  }
 
   containerPessoas.innerHTML = "";
   for (let i = 1; i <= Number(quantidadePessoas); i++) {
@@ -126,11 +123,11 @@ function gerarPessoas() {
   gerarListaPessoas.style.display = "block";
 }
 
-function gerarListaPessoas() {
-  let quantidadeFilhos = containerPessoas.childElementCount; // 2
-  let copiarContainerPessoas = document.querySelector(
-    "#copiar-container-pessoas"
-  );
+function gerarListaPessoasFunc() {
+  let quantidadeFilhos = containerPessoas.childElementCount;
+
+  let inputTotalDias = Number(totalDias.value);
+  console.log(inputTotalDias);
 
   let nomes = [];
 
@@ -139,10 +136,14 @@ function gerarListaPessoas() {
     nomes.push(nome);
   }
 
-  for (i in nomes) {
-    resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
+  resultadoPessoas.innerHTML = "";
+  for (let j = 0; j < inputTotalDias; j++) {
+    for (i in nomes) {
+      resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
+    }
   }
 
+  resultadoPessoas.style.display = "block";
   copiarContainerPessoas.style.display = "block";
 }
 
@@ -186,4 +187,13 @@ function copiarDatas(dado) {
 
   // Remove o elemento de área de transferência do documento
   document.body.removeChild(areaDeTransferencia);
+}
+
+function toggleDisplay(opcao) {
+  if (opcao == "esconder") {
+    gerarListaPessoas.style.display = "none";
+    containerPessoas.style.display = "none";
+    resultadoPessoas.style.display = "none";
+    copiarContainerPessoas.style.display = "none";
+  }
 }
