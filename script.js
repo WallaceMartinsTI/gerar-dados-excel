@@ -4,6 +4,8 @@ let totalDias = document.querySelector("#totalDias");
 let numCriancas = document.querySelector("#pessoas");
 let resultadoDatas = document.querySelector("#resultado-datas");
 
+let containerPessoas = document.querySelector("#container-pessoas");
+
 let date = new Date();
 let anoAtual = date.getFullYear();
 
@@ -80,14 +82,58 @@ function gerarMes() {
 
 function gerarPessoas() {
   let quantidadePessoas = document.querySelector("#numPes");
-  let containerPessoas = document.querySelector("#container-pessoas");
-  console.log(containerPessoas);
+  let gerarListaPessoas = document.querySelector("#gerar-lista-pessoas");
+  let containerPessoasFilhos = containerPessoas.childElementCount;
+
+  // Checar erros
+  if (
+    Number(quantidadePessoas.value) < 1 ||
+    Number(quantidadePessoas.value) > 10
+  ) {
+    alert(
+      `
+        [ERRO] Dados inválidos, favor checar e tentar novamente!
+        Provavelmente a quantidade de pessoas está inválida!
+        Dado aceito de 1 até 10
+      `
+    );
+    alert("[ERRO] Erros encontrados, corriga-os e tente Gerar novamente!");
+    return;
+  }
+
   for (let i = 1; i <= Number(quantidadePessoas.value); i++) {
-    let a = document.createElement("div");
-    containerPessoas.innerHTML = +`
-    aaaaaaaaaaaaa
-    a
-    `;
+    containerPessoas.innerHTML += `
+      <p>
+        <label for="nome${i + containerPessoasFilhos}">Pessoa ${
+      i + containerPessoasFilhos
+    }:</label>
+        <input
+          type="text"
+          name="nome${i + containerPessoasFilhos}"
+          id="nome${i + containerPessoasFilhos}"
+          minlength="3"
+          maxlength="50"
+        />
+      </p>
+      `;
+  }
+
+  gerarListaPessoas.style.display = "block";
+}
+
+function gerarListaPessoas() {
+  let quantidadeFilhos = containerPessoas.childElementCount; // 2
+  let nomes = [];
+
+  for (let i = 1; i <= quantidadeFilhos; i++) {
+    let nome = document.querySelector(`#nome${i}`).value;
+    nomes.push(nome);
+  }
+
+  let resultadoPessoas = document.querySelector("#resultado-pessoas");
+
+  for (i in nomes) {
+    resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
   }
 }
 

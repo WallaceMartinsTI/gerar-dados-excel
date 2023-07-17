@@ -69,8 +69,11 @@ main section p {
   border: 2px solid #3e838c;
   padding: 10px;
   font-size: 1.1em;
-  text-align: center;
   border-radius: 15px;
+}
+
+main section.secao-datas p {
+  text-align: center;
 }
 
 main section p.campo-botao {
@@ -96,9 +99,12 @@ main section#secao-pessoas label {
 }
 
 main section#secao-pessoas input {
-  width: 150px;
+  width: 200px;
 }
 
+main section#secao-pessoas .campo-botao {
+  text-align: center;
+}
 
 input[type="button"] {
   border: none;
@@ -115,13 +121,14 @@ input[type="button"]:hover {
   opacity: 0.7;
 }
 
-#resultado-datas {
+#resultado-datas, #resultado-pessoas {
   text-align: center;
   margin: 1em 0;
 }
 
 #copiar-container-datas,
-#copiar-container-pessoas {
+#copiar-container-pessoas,
+#gerar-lista-pessoas {
   display: none;
 }
 

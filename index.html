@@ -13,7 +13,7 @@
 
     <div class="content">
       <main>
-        <section>
+        <section class="secao-datas">
           <h2>Gerar lista de datas no mês</h2>
           <p class="campo-input">
             <label for="numMes">Número do mês:</label>
@@ -44,12 +44,7 @@
           <div id="resultado-datas"></div>
 
           <p id="copiar-container-datas" class="campo-botao">
-            <input
-              id="copiar"
-              type="button"
-              value="Copiar Datas"
-              onclick="copiarDatas()"
-            />
+            <input type="button" value="Copiar Datas" onclick="copiarDatas()" />
           </p>
         </section>
 
@@ -61,25 +56,46 @@
             <input type="number" name="numPes" id="numPes" min="1" max="10" />
           </p>
 
-          <div id="container-pessoas">
-            <p>
-              <label for="nome1">Pessoa 1:</label>
-              <input type="text" name="nome1" id="nome1" />
-            </p>
-            <p>
-              <label for="nome2">Pessoa 2:</label>
-              <input type="text" name="nome2" id="nome2" />
-            </p>
-          </div>
-
           <p class="campo-botao">
             <input type="button" value="Gerar" onclick="gerarPessoas()" />
           </p>
 
-          EM DESENVOLVIMENTO...
+          <div id="container-pessoas">
+            <!-- <p>
+              <label for="nome1">Pessoa 1:</label>
+              <input
+                type="text"
+                name="nome1"
+                id="nome1"
+                minlength="3"
+                maxlength="50"
+              />
+            </p>
+            <p>
+              <label for="nome2">Pessoa 2:</label>
+              <input
+                type="text"
+                name="nome2"
+                id="nome2"
+                minlength="3"
+                maxlength="50"
+              />
+            </p> -->
+          </div>
+
+          <p id="gerar-lista-pessoas" class="campo-botao">
+            <input
+              id="gerar-lista"
+              type="button"
+              value="Gerar Lista"
+              onclick="gerarListaPessoas()"
+            />
+          </p>
+
+          <div id="resultado-pessoas"></div>
 
           <p id="copiar-container-pessoas" class="campo-botao">
-            <input id="copiar" type="button" value="Copiar Datas" onclick="" />
+            <input id="" type="button" value="Copiar Datas" onclick="" />
           </p>
         </section>
       </main>
