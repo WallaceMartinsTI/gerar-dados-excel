@@ -17,6 +17,9 @@ let esconderGerarPessoa = false;
 let date = new Date();
 let anoAtual = date.getFullYear();
 
+let tamanhoTela = window.innerWidth;
+console.log(tamanhoTela);
+
 function setarAnoAtual() {
   anoDesejado.setAttribute("max", anoAtual + 1);
 }
