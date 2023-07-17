@@ -22,6 +22,10 @@ function setarAnoAtual() {
   anoDesejado.setAttribute("max", anoAtual + 1);
 }
 
+function setarAtributoProprio() {
+  diaInicial.setAttribute("max", Number(totalDias.value));
+}
+
 function checarErros() {
   let houveErro = true;
   let mensagemErro =
@@ -76,7 +80,6 @@ function checarErros() {
 function gerarMes() {
   let copiarContainerDatas = document.querySelector("#copiar-container-datas");
   let inputMes = Number(numMes.value);
-  let inputTotalDias = Number(totalDias.value);
   let inputNumCriancas = Number(numPessoas.value);
   let inputAnoDesejado = Number(anoDesejado.value);
   let inicioMes = Number(diaInicial.value);
@@ -90,7 +93,7 @@ function gerarMes() {
   let mes = inputMes < 10 ? `0${inputMes}` : inputMes;
 
   resultadoDatas.innerHTML = "";
-  for (let j = inicioMes; j <= inputTotalDias; j++) {
+  for (let j = inicioMes; j <= Number(totalDias.value); j++) {
     for (let i = 1; i <= inputNumCriancas; i++) {
       if (j < 10) {
         resultadoDatas.innerHTML += `0${j}/${mes}/${inputAnoDesejado}<br>`;
@@ -140,11 +143,6 @@ function gerarPessoas() {
 function gerarListaPessoasFunc() {
   let quantidadeFilhos = containerPessoas.childElementCount;
 
-  let quantidadeGerada =
-    Number(diaInicial.value) == 1
-      ? Number(totalDias.value) + 1 - Number(diaInicial.value)
-      : Number(totalDias.value) - Number(diaInicial.value);
-
   let nomes = [];
 
   for (let i = 1; i <= quantidadeFilhos; i++) {
@@ -153,7 +151,7 @@ function gerarListaPessoasFunc() {
   }
 
   resultadoPessoas.innerHTML = "";
-  for (let j = 0; j < quantidadeGerada; j++) {
+  for (let j = Number(inicioMes.value); j <= Number(totalDias.value); j++) {
     for (i in nomes) {
       resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
     }

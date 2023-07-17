@@ -29,7 +29,14 @@
               max="31"
             />
             <label class="mt-label" for="inicioMes">Dia inicial:</label>
-            <input type="number" name="inicioMes" id="inicioMes" value="1" />
+            <input
+              type="number"
+              name="inicioMes"
+              id="inicioMes"
+              min="1"
+              value="1"
+              onfocus="setarAtributoProprio()"
+            />
           </p>
           <p>
             <label for="ano">Ano desejado:</label>
