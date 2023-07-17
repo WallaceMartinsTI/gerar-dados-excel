@@ -72,6 +72,10 @@ main section p {
   border-radius: 15px;
 }
 
+main section#secao-datas {
+  text-align: center;
+}
+
 main section.secao-datas p {
   text-align: center;
 }
@@ -104,6 +108,7 @@ main section#secao-pessoas input {
 
 main section#secao-pessoas .campo-botao {
   text-align: center;
+
 }
 
 input[type="button"] {
@@ -143,10 +148,6 @@ footer {
   padding: 10px;
 }
 
-footer span {
-  color: #ece1c3;
-}
-
 footer a {
   text-decoration: none;
   color: #8ebdb6;
@@ -154,6 +155,10 @@ footer a {
 
 footer a:hover {
   color: #195e63;
+}
+
+.mt-label {
+  margin-top: 1em;
 }
 
 @media screen and (max-width: 1100px) {

@@ -1,13 +1,14 @@
-let anoDesejado = document.querySelector("#ano");
 let numMes = document.querySelector("#numMes");
 let totalDias = document.querySelector("#totalDias");
-let numCriancas = document.querySelector("#pessoas");
+let diaInicial = document.querySelector("#inicioMes");
+let anoDesejado = document.querySelector("#ano");
+let numPessoas = document.querySelector("#pessoas");
 let resultadoDatas = document.querySelector("#resultado-datas");
 
-let containerPessoas = document.querySelector("#container-pessoas");
+let containerPessoas = document.querySelector("#container-input-pessoas");
 let resultadoPessoas = document.querySelector("#resultado-pessoas");
 let gerarListaPessoas = document.querySelector("#gerar-lista-pessoas");
-let copiarContainerPessoas = document.querySelector(
+let copiarPessoasContainer = document.querySelector(
   "#copiar-container-pessoas"
 );
 
@@ -16,9 +17,6 @@ let esconderGerarPessoa = false;
 
 let date = new Date();
 let anoAtual = date.getFullYear();
-
-let tamanhoTela = window.innerWidth;
-console.log(tamanhoTela);
 
 function setarAnoAtual() {
   anoDesejado.setAttribute("max", anoAtual + 1);
@@ -29,27 +27,40 @@ function checarErros() {
   let mensagemErro =
     "[ERRO] Dados inválidos, favor checar e tentar novamente!\nProvavelmente o ";
   let formato = "\nDado aceito de ";
+  // Checar campo número do mês
   if (Number(numMes.value) < 1 || Number(numMes.value) > 12) {
-    // Checar campo número do mês
     mensagemErro += "número do mês está inválido!";
     formato += "1 até 12";
-  } else if (Number(totalDias.value) < 1 || Number(totalDias.value) > 31) {
+
     // Checar campo total de dias do mês
+  } else if (Number(totalDias.value) < 1 || Number(totalDias.value) > 31) {
     mensagemErro += "total de dias do mês está inválido!";
     formato += "1 até 31";
+
+    // Checar campo dia inicial
   } else if (
+    Number(diaInicial.value) < 1 ||
+    Number(diaInicial.value) > Number(totalDias.value)
+  ) {
+    mensagemErro += "dia inicial do mês está inválido!";
+    formato += "1 até total de dias no mês";
+  }
+
+  // Checar campo total de dias do mês
+  else if (
     Number(anoDesejado.value) < 2000 ||
     Number(anoDesejado.value) > anoAtual + 3
   ) {
-    // Checar campo total de dias do mês
     mensagemErro += `ano está fora do permitido, coloque um ano de no máximo 3 anos a mais do ano atual`;
     formato += `2000 até ${anoAtual + 3}`;
-  } else if (Number(numCriancas.value) < 1 || Number(numCriancas.value) > 10) {
+
     // Checar quantidade de pessoas
+  } else if (Number(numPessoas.value) < 1 || Number(numPessoas.value) > 10) {
     mensagemErro += "número de pessoas está inválido";
     formato += "1 até 10";
-  } else {
+
     // Sem erros
+  } else {
     houveErro = false;
   }
 
@@ -66,8 +77,9 @@ function gerarMes() {
   let copiarContainerDatas = document.querySelector("#copiar-container-datas");
   let inputMes = Number(numMes.value);
   let inputTotalDias = Number(totalDias.value);
-  let inputNumCriancas = Number(numCriancas.value);
+  let inputNumCriancas = Number(numPessoas.value);
   let inputAnoDesejado = Number(anoDesejado.value);
+  let inicioMes = Number(diaInicial.value);
 
   // Checar validade dos dados
   if (checarErros()) {
@@ -78,7 +90,7 @@ function gerarMes() {
   let mes = inputMes < 10 ? `0${inputMes}` : inputMes;
 
   resultadoDatas.innerHTML = "";
-  for (let j = 1; j <= inputTotalDias; j++) {
+  for (let j = inicioMes; j <= inputTotalDias; j++) {
     for (let i = 1; i <= inputNumCriancas; i++) {
       if (j < 10) {
         resultadoDatas.innerHTML += `0${j}/${mes}/${inputAnoDesejado}<br>`;
@@ -92,7 +104,7 @@ function gerarMes() {
   podeGerarPessoas = true;
   esconderGerarPessoa = true;
   if (esconderGerarPessoa) {
-    toggleDisplay("esconder");
+    toggleDisplay();
   }
 }
 
@@ -102,7 +114,6 @@ function gerarPessoas() {
     return;
   }
 
-  toggleDisplay("mostrar");
   containerPessoas.style.display = "block";
 
   let quantidadePessoas = document.querySelector("#pessoas").value;
@@ -129,8 +140,10 @@ function gerarPessoas() {
 function gerarListaPessoasFunc() {
   let quantidadeFilhos = containerPessoas.childElementCount;
 
-  let inputTotalDias = Number(totalDias.value);
-  console.log(inputTotalDias);
+  let quantidadeGerada =
+    Number(diaInicial.value) == 1
+      ? Number(totalDias.value) + 1 - Number(diaInicial.value)
+      : Number(totalDias.value) - Number(diaInicial.value);
 
   let nomes = [];
 
@@ -140,14 +153,14 @@ function gerarListaPessoasFunc() {
   }
 
   resultadoPessoas.innerHTML = "";
-  for (let j = 0; j < inputTotalDias; j++) {
+  for (let j = 0; j < quantidadeGerada; j++) {
     for (i in nomes) {
       resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
     }
   }
 
   resultadoPessoas.style.display = "block";
-  copiarContainerPessoas.style.display = "block";
+  copiarPessoasContainer.style.display = "block";
 }
 
 function copiarDatas(dado) {
@@ -192,11 +205,9 @@ function copiarDatas(dado) {
   document.body.removeChild(areaDeTransferencia);
 }
 
-function toggleDisplay(opcao) {
-  if (opcao == "esconder") {
-    gerarListaPessoas.style.display = "none";
-    containerPessoas.style.display = "none";
-    resultadoPessoas.style.display = "none";
-    copiarContainerPessoas.style.display = "none";
-  }
+function toggleDisplay() {
+  gerarListaPessoas.style.display = "none";
+  containerPessoas.style.display = "none";
+  resultadoPessoas.style.display = "none";
+  copiarPessoasContainer.style.display = "none";
 }
