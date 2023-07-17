@@ -44,7 +44,11 @@
           <div id="resultado-datas"></div>
 
           <p id="copiar-container-datas" class="campo-botao">
-            <input type="button" value="Copiar Datas" onclick="copiarDatas()" />
+            <input
+              type="button"
+              value="Copiar Datas"
+              onclick="copiarDatas('datas')"
+            />
           </p>
         </section>
 
@@ -60,28 +64,7 @@
             <input type="button" value="Gerar" onclick="gerarPessoas()" />
           </p>
 
-          <div id="container-pessoas">
-            <!-- <p>
-              <label for="nome1">Pessoa 1:</label>
-              <input
-                type="text"
-                name="nome1"
-                id="nome1"
-                minlength="3"
-                maxlength="50"
-              />
-            </p>
-            <p>
-              <label for="nome2">Pessoa 2:</label>
-              <input
-                type="text"
-                name="nome2"
-                id="nome2"
-                minlength="3"
-                maxlength="50"
-              />
-            </p> -->
-          </div>
+          <div id="container-pessoas"></div>
 
           <p id="gerar-lista-pessoas" class="campo-botao">
             <input
@@ -95,7 +78,12 @@
           <div id="resultado-pessoas"></div>
 
           <p id="copiar-container-pessoas" class="campo-botao">
-            <input id="" type="button" value="Copiar Datas" onclick="" />
+            <input
+              id=""
+              type="button"
+              value="Copiar Pessoas"
+              onclick="copiarDatas('pessoas')"
+            />
           </p>
         </section>
       </main>

@@ -5,6 +5,7 @@ let numCriancas = document.querySelector("#pessoas");
 let resultadoDatas = document.querySelector("#resultado-datas");
 
 let containerPessoas = document.querySelector("#container-pessoas");
+let resultadoPessoas = document.querySelector("#resultado-pessoas");
 
 let date = new Date();
 let anoAtual = date.getFullYear();
@@ -123,6 +124,10 @@ function gerarPessoas() {
 
 function gerarListaPessoas() {
   let quantidadeFilhos = containerPessoas.childElementCount; // 2
+  let copiarContainerPessoas = document.querySelector(
+    "#copiar-container-pessoas"
+  );
+
   let nomes = [];
 
   for (let i = 1; i <= quantidadeFilhos; i++) {
@@ -130,15 +135,23 @@ function gerarListaPessoas() {
     nomes.push(nome);
   }
 
-  let resultadoPessoas = document.querySelector("#resultado-pessoas");
-
   for (i in nomes) {
     resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
   }
+
+  copiarContainerPessoas.style.display = "block";
 }
 
-function copiarDatas() {
-  let texto = resultadoDatas.innerHTML;
+function copiarDatas(dado) {
+  let texto;
+
+  if (dado == "datas") {
+    texto = resultadoDatas.innerHTML;
+  } else if (dado == "pessoas") {
+    texto = resultadoPessoas.innerHTML;
+  } else {
+    alert("Erro ao tentar copiar, informe o Desenvolvedor.");
+  }
 
   // Cria um elemento de área de texto temporário
   let areaDeTransferencia = document.createElement("textarea");
@@ -151,15 +164,22 @@ function copiarDatas() {
   // Adiciona o elemento de área de transferência ao documento
   document.body.appendChild(areaDeTransferencia);
 
+  navigator.clipboard
+    .writeText(areaDeTransferencia.value)
+    .then(() => {
+      alert("Conteúdo copiado para sua área de transferência!");
+    })
+    .catch((error) => {
+      alert("Houve um erro ao copiar, informe ao Desenvolvedor");
+      alert("ERRO: " + error);
+    });
+
   // Seleciona o texto dentro do elemento de área de transferência
-  areaDeTransferencia.select();
+  //areaDeTransferencia.select();
 
   // Copia o texto selecionado para a área de transferência
-  document.execCommand("copy");
+  //document.execCommand("copy"); execCommand está obsoleto
 
   // Remove o elemento de área de transferência do documento
   document.body.removeChild(areaDeTransferencia);
-
-  // Exibe uma mensagem
-  alert("Conteúdo copiado para sua área de transferência!");
 }
