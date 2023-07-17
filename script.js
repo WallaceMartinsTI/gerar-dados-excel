@@ -7,6 +7,8 @@ let resultadoDatas = document.querySelector("#resultado-datas");
 let containerPessoas = document.querySelector("#container-pessoas");
 let resultadoPessoas = document.querySelector("#resultado-pessoas");
 
+let podeGerarPessoas = false;
+
 let date = new Date();
 let anoAtual = date.getFullYear();
 
@@ -79,18 +81,21 @@ function gerarMes() {
   }
 
   copiarContainerDatas.style.display = "block";
+  podeGerarPessoas = true;
 }
 
 function gerarPessoas() {
-  let quantidadePessoas = document.querySelector("#numPes");
+  if (!podeGerarPessoas) {
+    alert("Favor gerar datas primeiro");
+    return;
+  }
+
+  let quantidadePessoas = document.querySelector("#pessoas").value;
+
   let gerarListaPessoas = document.querySelector("#gerar-lista-pessoas");
-  let containerPessoasFilhos = containerPessoas.childElementCount;
 
   // Checar erros
-  if (
-    Number(quantidadePessoas.value) < 1 ||
-    Number(quantidadePessoas.value) > 10
-  ) {
+  if (Number(quantidadePessoas) < 1 || Number(quantidadePessoas) > 10) {
     alert(
       `
         [ERRO] Dados inválidos, favor checar e tentar novamente!
@@ -102,16 +107,15 @@ function gerarPessoas() {
     return;
   }
 
-  for (let i = 1; i <= Number(quantidadePessoas.value); i++) {
+  containerPessoas.innerHTML = "";
+  for (let i = 1; i <= Number(quantidadePessoas); i++) {
     containerPessoas.innerHTML += `
       <p>
-        <label for="nome${i + containerPessoasFilhos}">Pessoa ${
-      i + containerPessoasFilhos
-    }:</label>
+        <label for="nome${i}">Pessoa ${i}:</label>
         <input
           type="text"
-          name="nome${i + containerPessoasFilhos}"
-          id="nome${i + containerPessoasFilhos}"
+          name="nome${i}"
+          id="nome${i}"
           minlength="3"
           maxlength="50"
         />
