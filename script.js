@@ -107,7 +107,7 @@ function gerarMes() {
   podeGerarPessoas = true;
   esconderGerarPessoa = true;
   if (esconderGerarPessoa) {
-    toggleDisplay();
+    esconderCampos();
   }
 }
 
@@ -143,6 +143,22 @@ function gerarPessoas() {
 function gerarListaPessoasFunc() {
   let quantidadeFilhos = containerPessoas.childElementCount;
 
+  let valoresInputs = [];
+
+  // Preencher lista valoresInput com o value de todos os inputs
+  for (let i = 1; i <= quantidadeFilhos; i++) {
+    let input = document.querySelector(`#nome${i}`);
+    valoresInputs.push(input.value);
+  }
+
+  // Se tiver qualquer input vazio, ele não gera a lista de pessoas
+  for (let i in valoresInputs) {
+    if (valoresInputs[i] == "") {
+      alert("Favor preencha todos os nomes antes de gerar Lista");
+      return;
+    }
+  }
+
   let nomes = [];
 
   for (let i = 1; i <= quantidadeFilhos; i++) {
@@ -152,7 +168,7 @@ function gerarListaPessoasFunc() {
 
   resultadoPessoas.innerHTML = "";
   for (let j = Number(inicioMes.value); j <= Number(totalDias.value); j++) {
-    for (i in nomes) {
+    for (let i in nomes) {
       resultadoPessoas.innerHTML += `${nomes[i]}<br>`;
     }
   }
@@ -203,7 +219,7 @@ function copiarDatas(dado) {
   document.body.removeChild(areaDeTransferencia);
 }
 
-function toggleDisplay() {
+function esconderCampos() {
   gerarListaPessoas.style.display = "none";
   containerPessoas.style.display = "none";
   resultadoPessoas.style.display = "none";
