@@ -38,7 +38,7 @@ header h1 span {
   font-family: 'Kaushan Script', cursive;
 }
 
-.content {
+div.content {
   flex: 1;
 }
 
@@ -156,7 +156,6 @@ footer a:hover {
   color: #195e63;
 }
 
-
 @media screen and (max-width: 1100px) {
   main {
     flex-direction: column;
@@ -165,6 +164,10 @@ footer a:hover {
 
   main section {
     margin-bottom: 0;
+  }
+
+  main section#secao-pessoas {
+    margin-bottom: 2em;
   }
 }
 
